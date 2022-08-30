@@ -36,12 +36,11 @@ $container->register('router.request_context', RequestContext::class)
 $container->register('router.url_matcher', UrlMatcher::class)
     ->setArguments([$routeCollection, new Reference('router.request_context')]);
 
-$s1 = $container->get('router.url_matcher');
-
 // // To generate urls/paths
 //$generator = new UrlGenerator($routeCollection, $context);
 //dd($generator->generate('home', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
+// define this as container services
 $controllerResolver = new ControllerResolver();
 $argumentResolver = new ArgumentResolver();
 
