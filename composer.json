@@ -1,0 +1,25 @@
+{
+    "name": "jean/project-with-components",
+    "description": "Building an application with symfony components",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michelet Jean",
+            "email": "jean.antoine.michelet@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "symfony/http-foundation": "^6.1",
+        "symfony/var-dumper": "^6.1",
+        "symfony/routing": "^6.1",
+        "symfony/http-kernel": "^6.1",
+        "symfony/stopwatch": "^6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
