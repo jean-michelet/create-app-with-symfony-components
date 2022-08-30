@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
 $routeCollection = new RouteCollection();
-$routeCollection->add('home', new Route('/home/{name}', [
+$routeCollection->add('home', new Route('/{name}', [
     '_controller' => [HomeController::class, 'index'],
     'name' => 'Pascal'
 ]));

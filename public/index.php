@@ -40,15 +40,27 @@ $container->register('router.url_matcher', UrlMatcher::class)
 //$generator = new UrlGenerator($routeCollection, $context);
 //dd($generator->generate('home', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
-// define this as container services
-$controllerResolver = new ControllerResolver();
-$argumentResolver = new ArgumentResolver();
+//$controllerResolver = new ControllerResolver();
+$container->register('kernel.controller_resolver', ControllerResolver::class);
 
-$eventDispatcher = new EventDispatcher();
-$eventDispatcher->addSubscriber(new ExampleSubscriber());
+//$controllerResolver = new ArgumentResolver();
+$container->register('kernel.argument_resolver', ArgumentResolver::class);
 
-$app = new App($eventDispatcher, $matcher, $controllerResolver, $argumentResolver);
-$response = $app->handle($request);
+//$eventDispatcher = new EventDispatcher();
+//$eventDispatcher->addSubscriber(new ExampleSubscriber());
+$container->register('event_dispatcher', EventDispatcher::class)
+    ->addMethodCall('addSubscriber', [new ExampleSubscriber()]);
+
+//$app = new App($eventDispatcher, $matcher, $controllerResolver, $argumentResolver);
+$container->register('app', App::class)
+    ->setArguments([
+        new Reference('event_dispatcher'),
+        new Reference('router.url_matcher'),
+        new Reference('kernel.controller_resolver'),
+        new Reference('kernel.argument_resolver')
+    ]);
+
+$response = $container->get('app')->handle($request);
 
 // To create primitive profiler
 //if ($request->query->has('_debug')) {
