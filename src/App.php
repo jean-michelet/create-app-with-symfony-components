@@ -38,7 +38,6 @@ class App
 
             $controller = $this->controllerResolver->getController($request);
 
-            // create a ControllerEvent => pass $request and $controller
             $this->eventDispatcher->dispatch(new ControllerEvent($controller));
 
             $arguments = $this->argumentResolver->getArguments($request, $controller);
@@ -49,15 +48,13 @@ class App
                 [$class, $method] = $attributes['_controller'];
                 $response = (new $class)->$method(...$arguments);
             }
-
-            // to do later
+=
         } catch (ResourceNotFoundException $exception) {
             $response = new Response($exception, Response::HTTP_NOT_FOUND);
         } catch (\Exception $exception) {
             $response = new Response($exception, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
-        // create a ResponseEvent => pass $response
         $this->eventDispatcher->dispatch(new ResponseEvent($response));
 
         return $response;
