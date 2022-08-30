@@ -16,7 +16,10 @@
         "symfony/routing": "^6.1",
         "symfony/http-kernel": "^6.1",
         "symfony/stopwatch": "^6.1",
-        "symfony/dependency-injection": "^6.1"
+        "symfony/dependency-injection": "^6.1",
+        "doctrine/orm": "^2.13",
+        "doctrine/dbal": "^3.4",
+        "symfony/cache": "^6.1"
     },
     "autoload": {
         "psr-4": {
