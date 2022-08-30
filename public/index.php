@@ -2,6 +2,7 @@
 
 use App\App;
 use App\Subscriber\ExampleSubscriber;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
@@ -27,6 +28,13 @@ $routeCollection = require_once __DIR__.'/../config/routes.php';
 $request = Request::createFromGlobals();
 
 $container = new ContainerBuilder();
+
+require_once __DIR__."/../bootstrap-doctrine.php";
+
+$container->register('doctrine.orm.entity_manager', EntityManager::class)
+    ->setFactory([EntityManager::class, 'create'])
+    ->setArguments([$connexion, $config])
+;
 
 // $context = (new RequestContext())->fromRequest($request);
 $container->register('router.request_context', RequestContext::class)
