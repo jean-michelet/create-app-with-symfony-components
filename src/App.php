@@ -48,7 +48,7 @@ class App
                 [$class, $method] = $attributes['_controller'];
                 $response = (new $class)->$method(...$arguments);
             }
-=
+
         } catch (ResourceNotFoundException $exception) {
             $response = new Response($exception, Response::HTTP_NOT_FOUND);
         } catch (\Exception $exception) {
