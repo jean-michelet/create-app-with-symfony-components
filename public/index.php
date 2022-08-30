@@ -35,26 +35,26 @@ $matcher = new UrlMatcher($routeCollection, $context);
 $controllerResolver = new ControllerResolver();
 $argumentResolver = new ArgumentResolver();
 
-$eventDispatcher = new TraceableEventDispatcher(new EventDispatcher(), new Stopwatch());
+$eventDispatcher = new EventDispatcher();
 $eventDispatcher->addSubscriber(new ExampleSubscriber());
 
 $app = new App($eventDispatcher, $matcher, $controllerResolver, $argumentResolver);
 $response = $app->handle($request);
 
 // To create primitive profiler
-if ($request->query->has('_debug')) {
-    $calledListeners = [];
-    $lastEvent = '';
-    foreach ($eventDispatcher->getCalledListeners() as $calledListeners) {
-        if ($calledListeners['event'] !== $lastEvent) {
-            $lastEvent = $calledListeners['event'];
-        }
-
-        $debug[$lastEvent][] = $calledListeners['pretty'];
-    };
-
-    dump($debug);
-}
+//if ($request->query->has('_debug')) {
+//    $calledListeners = [];
+//    $lastEvent = '';
+//    foreach ($eventDispatcher->getCalledListeners() as $calledListeners) {
+//        if ($calledListeners['event'] !== $lastEvent) {
+//            $lastEvent = $calledListeners['event'];
+//        }
+//
+//        $debug[$lastEvent][] = $calledListeners['pretty'];
+//    };
+//
+//    dump($debug);
+//}
 
 $response->send();
 exit;
