@@ -1,6 +1,8 @@
 <?php
 
 use App\App;
+use App\AppControllerResolver;
+use App\Controller\BlogController;
 use App\Subscriber\ExampleSubscriber;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -36,6 +38,9 @@ $container->register('doctrine.orm.entity_manager', EntityManager::class)
     ->setArguments([$connexion, $config])
 ;
 
+$container->register(BlogController::class, BlogController::class)
+    ->setArguments([new Reference('doctrine.orm.entity_manager')]);
+
 // $context = (new RequestContext())->fromRequest($request);
 $container->register('router.request_context', RequestContext::class)
     ->addMethodCall('fromRequest', [$request]);
@@ -49,7 +54,8 @@ $container->register('router.url_matcher', UrlMatcher::class)
 //dd($generator->generate('home', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
 //$controllerResolver = new ControllerResolver();
-$container->register('kernel.controller_resolver', ControllerResolver::class);
+$container->register('kernel.controller_resolver', AppControllerResolver::class)
+    ->setArguments([null, $container]);
 
 //$controllerResolver = new ArgumentResolver();
 $container->register('kernel.argument_resolver', ArgumentResolver::class);

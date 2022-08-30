@@ -18,6 +18,11 @@ $routeCollection->add( 'blog', new Route('/blog', [
     ]
 ));
 
+$routeCollection->add( 'blog_new', new Route('/blog/new', [
+        '_controller' => [BlogController::class, 'new'],
+    ]
+));
+
 $routeCollection->add( 'blog_show', new Route('/blog/show/{id}', [
     '_controller' => [BlogController::class, 'show'],
 ], [

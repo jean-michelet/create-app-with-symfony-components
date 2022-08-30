@@ -42,11 +42,12 @@ class App
 
             $arguments = $this->argumentResolver->getArguments($request, $controller);
 
-            if (is_callable($attributes['_controller'])) {
-                $response = $attributes['_controller'](...$arguments);
+            if (is_callable($controller)) {
+                $response = $controller(...$arguments);
             } else {
-                [$class, $method] = $attributes['_controller'];
-                $response = (new $class)->$method(...$arguments);
+                [$class, $method] = $controller;
+
+                $response = $class->$method(...$arguments);
             }
 
         } catch (ResourceNotFoundException $exception) {
