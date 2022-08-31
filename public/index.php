@@ -45,8 +45,6 @@ $container->register('doctrine.orm.entity_manager', EntityManager::class)
     ->setArguments([$connexion, $config])
 ;
 
-$e1 = $container->get('doctrine.orm.entity_manager');
-
 $container->register(BlogController::class, BlogController::class)
     ->setArguments([new Reference('doctrine.orm.entity_manager')]);
 

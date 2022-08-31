@@ -18,8 +18,7 @@ class BlogController
 
     public function index(): Response
     {
-        $posts = $this->entityManager->getRepository(User::class)->findAll();
-        dd($posts);
+        $posts = $this->entityManager->getRepository(Post::class)->findAll();
 
         return new Response(render_view('blog/index.php', ['posts' => $posts]));
     }

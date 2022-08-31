@@ -17,6 +17,6 @@ $config = ORMSetup::createAttributeMetadataConfiguration(
 // database configuration parameters
 $connexion = [
     'driver' => 'pdo_sqlite',
-    'path' => __DIR__.'/../db.sqlite',
+    'path' => __DIR__.'/db.sqlite',
 ];
 
