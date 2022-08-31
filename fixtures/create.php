@@ -1,14 +1,23 @@
 <?php
 
+use App\Entity\Comment;
 use App\Entity\Post;
 use App\Entity\User;
 
 require_once __DIR__.'/_boostrap-fixtures.php';
 
+require_once __DIR__.'/remove.php';
+
 try {
     foreach (['patrick', 'jean', 'julie'] as $name) {
         $user = new User();
         $user->setEmail($name.'@mail.com');
+
+        foreach (['Very cool!', 'This article is terrible!', 'Amazing article!'] as $content) {
+            $comment = new Comment();
+            $comment->setContent($content);
+            $comment->setAuthor($user);
+        }
 
         $em->persist($user);
     }
