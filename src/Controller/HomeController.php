@@ -8,6 +8,6 @@ class HomeController
 {
     public function index($name): Response
     {
-        return new Response(render_view('home', ['name' => $name]));
+        return new Response(render_view('//home/index.php', ['name' => $name]));
     }
 }

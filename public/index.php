@@ -15,12 +15,21 @@ use Symfony\Component\Routing\RequestContext;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-function render_view(string $page, array $vars = []): string
+function render_view(string $path, array $vars = []): string
 {
-    ob_start();
     extract($vars);
-    require_once __DIR__.'/../views/'.$page.'.php';
-    return (string) ob_get_clean();
+    ob_start();
+    require_once __DIR__.'/../views/'.trim($path, '/');
+    $content = ob_get_clean();
+
+    if (isset($extends)) {
+        ob_start();
+        require_once __DIR__.'/../views/'.trim($extends, '/');
+
+        return (string) ob_get_clean();
+    }
+
+    return $content;
 }
 
 $routeCollection = require_once __DIR__.'/../config/routes.php';

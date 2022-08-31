@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -16,17 +18,14 @@ class BlogController
 
     public function index(): Response
     {
-        return new Response(render_view('blog'));
-    }
+        $posts = $this->entityManager->getRepository(User::class)->findAll();
+        dd($posts);
 
-    public function new(): Response
-    {
-        dd('my entity  manager', $this->entityManager);
-        return new Response('OK');
+        return new Response(render_view('blog/index.php', ['posts' => $posts]));
     }
 
     public function show($id): Response
     {
-        return new Response(render_view('show', ['id' => $id]));
+        return new Response(render_view('blog/show.php', ['id' => $id]));
     }
 }
