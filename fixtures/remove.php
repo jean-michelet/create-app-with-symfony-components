@@ -7,7 +7,7 @@ require_once __DIR__.'/_boostrap-fixtures.php';
 
 try {
     $users = $em->getRepository(User::class)->findAll();
-    foreach ($users as $user) {
+    foreach ($users as $key => $user) {
         $em->remove($user);
     }
 
