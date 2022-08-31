@@ -20,7 +20,7 @@ class App
     private ControllerResolverInterface $controllerResolver;
     private ArgumentResolverInterface $argumentResolver;
 
-    public function __construct(EventDispatcherInterface $eventDispatcher, UrlMatcherInterface $matcher, $controllerResolver, ArgumentResolverInterface $argumentResolver)
+    public function __construct(EventDispatcherInterface $eventDispatcher, UrlMatcherInterface $matcher, ControllerResolverInterface $controllerResolver, ArgumentResolverInterface $argumentResolver)
     {
         $this->eventDispatcher = $eventDispatcher;
         $this->matcher = $matcher;
