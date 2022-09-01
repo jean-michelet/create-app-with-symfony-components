@@ -1,28 +1,14 @@
 #!/usr/bin/env php
 <?php
 
-use Doctrine\ORM\Tools\Console\ConsoleRunner;
-use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Exception\ORMException;
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Doctrine\ORM\Tools\Console\EntityManagerProvider\SingleManagerProvider;
 
 require_once __DIR__."/../vendor/autoload.php";
-$isDevMode = true;
-$proxyDir = null;
-$cache = null;
-$useSimpleAnnotationReader = false;
-$config = \Doctrine\ORM\ORMSetup::createAttributeMetadataConfiguration(
-    [__DIR__."/../src/Entity"],
-    $isDevMode,
-    $proxyDir,
-    $cache
-);
 
-// database configuration parameters
-$connexion = [
-    'driver' => 'pdo_sqlite',
-    'path' => __DIR__.'/../db.sqlite',
-];
+require_once __DIR__."/../bootstrap-doctrine.php";
 
 // obtaining the entity manager
 try {

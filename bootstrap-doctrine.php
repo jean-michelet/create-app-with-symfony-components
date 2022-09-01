@@ -1,6 +1,5 @@
 <?php
 
-// Create a simple "default" Doctrine ORM configuration for Annotations
 use Doctrine\ORM\ORMSetup;
 
 $isDevMode = true;
