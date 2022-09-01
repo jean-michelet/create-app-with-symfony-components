@@ -38,7 +38,7 @@ $request = Request::createFromGlobals();
 
 $container = new ContainerBuilder();
 
-require_once __DIR__."/../bootstrap-doctrine.php";
+[$config, $connexion] = require_once __DIR__."/../config/packages/doctrine.php";
 
 $container->register('doctrine.orm.entity_manager', EntityManager::class)
     ->setFactory([EntityManager::class, 'create'])

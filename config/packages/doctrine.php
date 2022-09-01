@@ -7,7 +7,7 @@ $proxyDir = null;
 $cache = null;
 $useSimpleAnnotationReader = false;
 $config = ORMSetup::createAttributeMetadataConfiguration(
-    [__DIR__."/src/Entity"],
+    [__DIR__."/../../src/Entity"],
     $isDevMode,
     $proxyDir,
     $cache
@@ -16,6 +16,7 @@ $config = ORMSetup::createAttributeMetadataConfiguration(
 // database configuration parameters
 $connexion = [
     'driver' => 'pdo_sqlite',
-    'path' => __DIR__.'/db.sqlite',
+    'path' => __DIR__.'/../../db.sqlite',
 ];
 
+return [$config, $connexion];
