@@ -6,8 +6,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HomeController
 {
-    public function index($name): Response
+    public function index(): Response
     {
-        return new Response(render_view('//home/index.php', ['name' => $name]));
+        return new Response(render_view('/home/index.php'));
     }
 }

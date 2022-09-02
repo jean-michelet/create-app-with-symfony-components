@@ -1,3 +1,3 @@
 <?php $extends = 'base.php' ?>
 
-<h1>Home page <?php echo $name ?></h1>
+<h1>Home page </h1>

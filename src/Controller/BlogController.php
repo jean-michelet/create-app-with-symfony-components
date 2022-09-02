@@ -25,6 +25,8 @@ class BlogController
 
     public function show($id): Response
     {
-        return new Response(render_view('blog/show.php', ['id' => $id]));
+        $post = $this->entityManager->getRepository(Post::class)->find($id);
+
+        return new Response(render_view('blog/show.php', ['post' => $post]));
     }
 }
